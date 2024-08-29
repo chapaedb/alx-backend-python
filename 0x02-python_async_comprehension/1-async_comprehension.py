@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
 """
-Execute multiple coroutines same time with async
-Write async coroutine
-takes argument wait_n and max_delay
+Async Comprehensions
+Write coroutine async_comprehension, takes no arguments
+Return 10 random numbers collected using async comprehensions
 """
-import asyncio
 from typing import List
-import random
+Vector = List[float]
+
+async_generator = __import__('0-async_generator').async_generator
 
 
-wait_random = __import__('0-basic_async_syntax').wait_random
-
-
-async def wait_n(n: int, max_delay: int) -> List[float]:
+async def async_comprehension() -> Vector:
     """
-    Asynchronous coroutine
-    wait_n
+    Coroutine async_comprehension
+    yield random numbers collected
     """
-    ls = [asyncio.create_task(wait_random(max_delay)) for i in range(n)]
-    end = [await task for task in asyncio.as_completed(ls)]
-    return end
+    stop = [y async for y in async_generator()]
+    return stop
